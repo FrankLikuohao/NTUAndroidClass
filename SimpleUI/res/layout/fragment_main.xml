@@ -10,10 +10,9 @@
 
     <EditText
         android:id="@+id/editText1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/button1"
         android:layout_marginTop="19dp"
         android:ems="10" >
 
@@ -24,11 +23,19 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignRight="@+id/editText1"
         android:layout_below="@+id/editText1"
-        android:layout_marginRight="84dp"
-        android:layout_marginTop="14dp"
         android:onClick="send"
         android:text="Button" />
+
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_marginLeft="14dp"
+        android:text="CheckBox" />
 
 </RelativeLayout>
