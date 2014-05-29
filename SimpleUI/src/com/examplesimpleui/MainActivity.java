@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -68,28 +69,23 @@ public class MainActivity extends ActionBarActivity {
             
             button = (Button) rootView.findViewById(R.id.button1);
 			editText = (EditText) rootView.findViewById(R.id.editText1);
-
-			button.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-						Log.d("debug", "click2");
-						Log.d("debug", "text: " + editText.getText().toString());
-					}
-					
-				
-
 			
+			button.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								showToast(editText.getText().toString());
+							}								
 			});
-            
-            
-            return rootView;
+  
+           return rootView;
         }
         
-       
+       private void showToast(String text){
+    	   Toast.makeText(getActivity(),text,Toast.LENGTH_LONG).show();
+        }
         			
-        
+
+       
     }
 
 }
