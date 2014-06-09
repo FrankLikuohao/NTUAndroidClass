@@ -1,5 +1,10 @@
 package com.example.listview;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -11,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -54,21 +60,70 @@ public class MainActivity extends ActionBarActivity {
 		public PlaceholderFragment() {
 		}
 		
+		
+	
+		
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
+			
+			
+			
 			View rootView = inflater.inflate(R.layout.fragment_main, container,
 					false);
 			listView = (ListView) rootView.findViewById(R.id.listView1);
 
-			String[] data = new String[] { "1", "2", "3", "4", "5", "6", "7",
-					"8", "9", "10", "11", "12", "13" };
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-					getActivity(), android.R.layout.simple_list_item_1, data);
-			listView.setAdapter(adapter);
-
+			setDataBySimpleAdapterAndMyLayout();
+			
 			return rootView;
 		}
+		private void setDataBySimpleAdapterAndMyLayout() {
+
+			int[] images = new int[] { R.drawable.image1, R.drawable.image2,
+					R.drawable.image3, R.drawable.image4, R.drawable.image5,
+					R.drawable.image6 };
+			String text[] = new String[] { "¥»¦]§{¨qµ¦ 185 ·³½Ï¨°",
+					"Denmark National Day 2014", "¨È¾ú¦ë¨ô¶ø§B¹p°^ 93 ·³½Ï¨°",
+					"¦¶²ú¨È¯Z¯Ã·æºû¬î¯SÁÉ°Ò¸¦­C®R 169 ·³½Ï¨°", "2014 ¦~¸q¤j§Q¦@©M¬ö©À¤é", "2014 ¦~ºÝ¤È¸`",
+					"Children's Day 2014" };
+
+			List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+
+			for (int i = 0; i < images.length; i++) {
+				Map<String, Object> item = new HashMap<String, Object>();
+				item.put("image", images[i]);
+				item.put("text", text[i]);
+				data.add(item);
+			}
+
+			String[] from = new String[] { "image", "text" };
+			int[] to = new int[] { R.id.imageView1, R.id.textView1 };
+
+			SimpleAdapter adapter = new SimpleAdapter(getActivity(), data,
+					R.layout.listview_item, from, to);
+			listView.setAdapter(adapter);
+		}
 		
+		private void setDataBySimpleAdapter() {
+
+			String name[] = new String[] { "kuo", "chen" };
+			String sex[] = new String[] { "M", "M" };
+
+			List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+
+			for (int i = 0; i < name.length; i++) {
+				Map<String, String> item = new HashMap<String, String>();
+				item.put("main", name[i]);
+				item.put("sub", sex[i]);
+				data.add(item);
+			}
+
+			String[] from = new String[] { "main", "sub" };
+			int[] to = new int[] { android.R.id.text1, android.R.id.text2 };
+
+			SimpleAdapter adapter = new SimpleAdapter(getActivity(), data,
+					android.R.layout.simple_list_item_2, from, to);
+			listView.setAdapter(adapter);
+		}
 	
 		
 	}
