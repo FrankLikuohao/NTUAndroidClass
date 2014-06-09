@@ -14,9 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -60,7 +63,13 @@ public class MainActivity extends ActionBarActivity {
 		public PlaceholderFragment() {
 		}
 		
-		
+		final private static String[] LINKS = {
+			 				"http://www.google.com/doodles/honinbo-shusakus-185th-birthday",
+			 				"http://www.google.com/doodles/denmark-national-day-2014",
+			 				"http://www.google.com/doodles/alejandro-obregons-93rd-birthday",
+			 				"http://www.google.com/doodles/julija-beniuseviciute-zymantienes-169th-birthday",
+			 				"http://www.google.com/doodles/italian-republic-day-2014",
+			 				"http://www.google.com/doodles/dragon-boat-festival-2014", };
 	
 		
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,9 +82,24 @@ public class MainActivity extends ActionBarActivity {
 			listView = (ListView) rootView.findViewById(R.id.listView1);
 
 			setDataBySimpleAdapterAndMyLayout();
-			
+			setListener();
 			return rootView;
 		}
+		
+		private void setListener() {
+			 			listView.setOnItemClickListener(new OnItemClickListener() {
+			 
+			 				@Override
+			 				public void onItemClick(AdapterView<?> adapter, View view,
+			 						int position, long id) {
+			 					String link = LINKS[position];
+			 					Toast.makeText(getActivity(), link, Toast.LENGTH_SHORT)
+			 							.show();
+			 				}
+			 			});
+			 
+			 		}
+			 
 		private void setDataBySimpleAdapterAndMyLayout() {
 
 			int[] images = new int[] { R.drawable.image1, R.drawable.image2,
