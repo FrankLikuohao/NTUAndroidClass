@@ -17,6 +17,11 @@ import android.widget.Toast;
 import android.os.Build;
 import android.provider.MediaStore;
 
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseObject;
+
+
 public class MainActivity extends ActionBarActivity {
 
 	
@@ -25,6 +30,14 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+	
+			  Parse.initialize(this, "xF3WzuZ2Z3rfxwdfVTEwViB9kARbO9ycrVV7SCkr", "wCScYXpZPGENhGbCxlOsmCRC31KxqpV0MRH0PUAp");
+			 
+			  ParseObject testObject = new ParseObject("TestObject");
+			  testObject.put("foo", "bar");
+			  testObject.saveInBackground();
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
