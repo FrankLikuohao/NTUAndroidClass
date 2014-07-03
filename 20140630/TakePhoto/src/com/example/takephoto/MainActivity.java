@@ -43,9 +43,7 @@ public class MainActivity extends ActionBarActivity {
 			  Parse.initialize(this, "xF3WzuZ2Z3rfxwdfVTEwViB9kARbO9ycrVV7SCkr", "wCScYXpZPGENhGbCxlOsmCRC31KxqpV0MRH0PUAp");
 			 
 			  ParseObject testObject = new ParseObject("TestObject");
-			  testObject.put("foo", "bar");
-			  testObject.saveInBackground();
-		
+			
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -89,21 +87,25 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return new File(pictureDir, "photo.png");
 	}
+	
+	
+	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, intent);
 
-		if (requestCode == REQUEST_CODE_TAKE_PHOTO) {//依照數字（flag）做對應處理
+		if (requestCode == REQUEST_CODE_TAKE_PHOTO) {
 			Log.d("debug", "onActivityResult, requestCode=" + requestCode
 					+ ", resultCode=" + resultCode);
 			Toast.makeText(this, "from camera", Toast.LENGTH_SHORT).show();
-			if (resultCode == RESULT_OK) {
-				Bitmap bitmap = intent.getParcelableExtra("data");
-				saveToParse(bitmap);
-				imageView.setImageBitmap(bitmap);
+
+			if (resultCode == RESULT_OK) {				
+//				Bitmap bitmap = intent.getParcelableExtra("data");
+//				saveToParse(bitmap);
+//				imageView.setImageBitmap(bitmap);
+				imageView.setImageURI(outputFile);
 			}
-			
 		}
 	}
 	private void saveToParse(Bitmap bitmap) {
